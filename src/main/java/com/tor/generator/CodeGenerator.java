@@ -82,8 +82,6 @@ public class CodeGenerator {
       context.addProperty(PropertyRegistry.CONTEXT_BEGINNING_DELIMITER, "`");
       context.addProperty(PropertyRegistry.CONTEXT_ENDING_DELIMITER, "`");
       //自定义的
-      CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
-      commentGeneratorConfiguration.setConfigurationType("com.peas.mysql.MySQLCommentGenerator");
       //配置数据库连接
       JDBCConnectionConfiguration jdbcConnectionConfiguration = new JDBCConnectionConfiguration();
       jdbcConnectionConfiguration.setConnectionURL(JDBC_URL);

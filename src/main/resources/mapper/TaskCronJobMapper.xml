@@ -16,4 +16,57 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="BaseResultMap" type="com.tor.project.entity.TaskCronJob">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cron" jdbcType="VARCHAR" property="cron" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="job_class_name" jdbcType="VARCHAR" property="jobClassName" />
+    <result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
+    <result column="job_number" jdbcType="VARCHAR" property="jobNumber" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from task_cron_job
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tor.project.entity.TaskCronJob">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task_cron_job (cron, job_name, job_class_name, 
+      job_desc, job_number, enabled, 
+      create_time, update_time, remark
+      )
+    values (#{cron,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, #{jobClassName,jdbcType=VARCHAR}, 
+      #{jobDesc,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}, #{enabled,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.tor.project.entity.TaskCronJob">
+    update task_cron_job
+    set cron = #{cron,jdbcType=VARCHAR},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_class_name = #{jobClassName,jdbcType=VARCHAR},
+      job_desc = #{jobDesc,jdbcType=VARCHAR},
+      job_number = #{jobNumber,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, cron, job_name, job_class_name, job_desc, job_number, enabled, create_time, 
+    update_time, remark
+    from task_cron_job
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, cron, job_name, job_class_name, job_desc, job_number, enabled, create_time, 
+    update_time, remark
+    from task_cron_job
+  </select>
 </mapper>

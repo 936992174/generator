@@ -16,4 +16,5 @@ public  class ProjectConstant {
     public static  String CONTROLLER_PACKAGE = BASE_PACKAGE + ".controller";//生成的Controller所在包
 
     public static  String MAPPER_INTERFACE_REFERENCE = GENERATOR_PACKAGE + ".core.Mapper";//Mapper插件基础接口的完全限定名
+//    public static  String
 }
